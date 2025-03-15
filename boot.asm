@@ -49,7 +49,7 @@ NUMBER_OF_SECTORS: db 0
 
     jmp enter_protected_mode
 
-    jmp $
+    hlt
 
 failed_to_read_disk:
     push diskReadError
@@ -60,7 +60,7 @@ failed_to_read_disk:
     call print_hex
     pop ax
 
-    jmp $
+    hlt
 
 
 print_hex: ; takes integer
@@ -187,7 +187,9 @@ start_protected_mode:
     mov ebp, 0x90000
     mov esp, ebp
 
-    jmp KERNEL_LOCATION
+    jmp CODE_SEG:KERNEL_LOCATION 
+
+    hlt
 
 times 510-($-$$) db 0
 dw 0xaa55
