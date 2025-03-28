@@ -1,13 +1,22 @@
 
 #include <stdint.h>
+#include "vga_buffer.h"
+int main(){
+   
+   // multidimensional array to keep track of
+   Cell *VGABuffer[VGA_BUFFER_HEIGHT][VGA_BUFFER_WIDTH];
 
-int main()
-{
-    uint8_t* text_buffer = (uint8_t*)0xB8000;
-    text_buffer[0] = 'H';
-    text_buffer[1] = 0x0F;
-    text_buffer[2] = 'i';
-    text_buffer[3] = 0x0F;
-    while (1)
-        ;
+   int x = 0;
+   int y = 0;
+
+
+
+   // finally this is the shit we're coming for yehhhhhh whooo yeah baybee! thats what we're waiting for!!!! thats what its all about!!!!
+   Cell* Writer = (Cell*)VGA_BUFFER_LOCATION;
+
+   printstr("hello world!", VGABuffer, Writer, &x, &y);
+
+   while (1) {}; // until we can call halt.
+
+  
 }
